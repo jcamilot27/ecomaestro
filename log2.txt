@@ -1,0 +1,7 @@
+﻿Analyzing eco_maestro...                                        
+
+   info - 'partialResults' is deprecated and shouldn't be used. Use SpeechListenOptions.partialResults instead - lib\core\services\real_speech_service.dart:43:7 - deprecated_member_use
+   info - 'cancelOnError' is deprecated and shouldn't be used. Use SpeechListenOptions.cancelOnError instead - lib\core\services\real_speech_service.dart:45:7 - deprecated_member_use
+   info - 'listenMode' is deprecated and shouldn't be used. Use SpeechListenOptions.listenMode instead - lib\core\services\real_speech_service.dart:46:7 - deprecated_member_use
+  error - Directives must appear before any declarations - lib\core\services\real_speech_service.dart:111:1 - directive_after_declaration
+
