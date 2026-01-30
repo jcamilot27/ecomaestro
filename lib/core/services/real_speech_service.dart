@@ -12,12 +12,12 @@ class RealSpeechService implements SpeechService {
   Stream<SpeechResult> startListening() async* {
     bool available = await _speechToText.initialize(
       onError: (SpeechRecognitionError error) {
+        // Handle init errors usually through status listener, but we will catch them in generic usage
         debugPrint('Speech setup error: ${error.errorMsg}');
       },
       onStatus: (String status) {
         debugPrint('Speech status: $status');
       },
-      debugLogging: false,
     );
 
     if (!available) {
@@ -49,9 +49,9 @@ class RealSpeechService implements SpeechService {
       listenOptions: SpeechListenOptions(
         partialResults: true,
         cancelOnError: true,
-        listenMode: ListenMode.dictation,
-        onDevice: true, // Try to bypass system dialog/sounds
-        sampleRate: 44100,
+        listenMode: ListenMode.dictation, // Optimized for continuous speech
+        sampleRate:
+            44100, // Explicitly request higher quality audio if supported
       ),
     );
 

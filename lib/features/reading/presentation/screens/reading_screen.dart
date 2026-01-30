@@ -103,95 +103,89 @@ class _ReadingViewState extends State<_ReadingView> {
               return Stack(
                 children: [
                   // Main content centered
-                  Center(
-                    child: SingleChildScrollView(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 24.0,
-                        vertical: 80,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          // Energy Core (Centralized Thermometer)
-                          SizedBox(
-                            height: 350,
-                            child: Center(
-                              child:
-                                  state.status == ReadingStatus.sessionCompleted
-                                  ? _buildExplosion(state)
-                                  : EnergyCore(
-                                      progress:
-                                          (state.currentIndex + 1) /
-                                          state.totalTexts,
-                                      fluencyLevel: state.fluencyScore,
-                                      isListening:
-                                          state.status ==
-                                          ReadingStatus.listening,
-                                    ),
-                            ),
-                          ),
-
-                          // Reading Card with fluid animation
-                          Container(
-                                width: double.infinity,
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 32,
-                                  vertical: 48,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Colors.white.withValues(alpha: 0.04),
-                                  borderRadius: BorderRadius.circular(40),
-                                  border: Border.all(
-                                    color: Colors.white.withValues(alpha: 0.1),
-                                    width: 1.5,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // Energy Core (Centralized Thermometer)
+                        SizedBox(
+                          height: 350,
+                          child: Center(
+                            child:
+                                state.status == ReadingStatus.sessionCompleted
+                                ? _buildExplosion(state)
+                                : EnergyCore(
+                                    progress:
+                                        (state.currentIndex + 1) /
+                                        state.totalTexts,
+                                    fluencyLevel: state.fluencyScore,
+                                    isListening:
+                                        state.status == ReadingStatus.listening,
                                   ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: const Color(
-                                        0xFF00B0FF,
-                                      ).withValues(alpha: 0.1),
-                                      blurRadius: 40,
-                                      offset: const Offset(0, 20),
-                                    ),
-                                  ],
-                                ),
-                                child: _buildHighlightedText(
-                                  context,
-                                  state.currentText,
-                                  state,
-                                ),
-                              )
-                              .animate(key: ValueKey(state.currentText))
-                              .fadeIn(duration: 600.ms)
-                              .slideY(
-                                begin: 0.2,
-                                end: 0,
-                                curve: Curves.easeOutBack,
-                              )
-                              .custom(
-                                duration: 3.seconds,
-                                builder: (context, value, child) {
-                                  return Transform.translate(
-                                    offset: Offset(
-                                      0,
-                                      4 * math.sin(value * 2 * math.pi),
-                                    ),
-                                    child: child,
-                                  );
-                                },
-                              )
-                              .shimmer(
-                                delay: 200.ms,
-                                duration: 2.seconds,
-                                color: const Color(
-                                  0xFF00E5FF,
-                                ).withValues(alpha: 0.3),
-                              ),
+                          ),
+                        ),
 
-                          // Give some space for the button at the bottom
-                          const SizedBox(height: 120),
-                        ],
-                      ),
+                        // Reading Card with fluid animation
+                        Container(
+                              width: double.infinity,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 32,
+                                vertical: 48,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: 0.04),
+                                borderRadius: BorderRadius.circular(40),
+                                border: Border.all(
+                                  color: Colors.white.withValues(alpha: 0.1),
+                                  width: 1.5,
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: const Color(
+                                      0xFF00B0FF,
+                                    ).withValues(alpha: 0.1),
+                                    blurRadius: 40,
+                                    offset: const Offset(0, 20),
+                                  ),
+                                ],
+                              ),
+                              child: _buildHighlightedText(
+                                context,
+                                state.currentText,
+                                state,
+                              ),
+                            )
+                            .animate(key: ValueKey(state.currentText))
+                            .fadeIn(duration: 600.ms)
+                            .slideY(
+                              begin: 0.2,
+                              end: 0,
+                              curve: Curves.easeOutBack,
+                            )
+                            .custom(
+                              duration: 3.seconds,
+                              builder: (context, value, child) {
+                                return Transform.translate(
+                                  offset: Offset(
+                                    0,
+                                    4 * math.sin(value * 2 * math.pi),
+                                  ),
+                                  child: child,
+                                );
+                              },
+                            )
+                            .shimmer(
+                              delay: 200.ms,
+                              duration: 2.seconds,
+                              color: const Color(
+                                0xFF00E5FF,
+                              ).withValues(alpha: 0.3),
+                            ),
+
+                        // Give some space for the button at the bottom
+                        const SizedBox(height: 120),
+                      ],
                     ),
                   ),
 
